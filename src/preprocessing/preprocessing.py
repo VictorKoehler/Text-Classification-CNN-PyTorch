@@ -23,15 +23,22 @@ class Preprocessing:
 		self.y_train = None
 		self.y_test = None
 		
-	def load_data(self):
+	def load_data(self, source=None):
 		# Reads the raw csv file and split into
 		# sentences (x) and target (y)
 		
-		df = pd.read_csv(self.data)
-		df.drop(['id','keyword','location'], axis=1, inplace=True)
-		
-		self.x_raw = df['text'].values
-		self.y = df['target'].values
+		if isinstance(source, list):
+			self.x_raw = np.array(source)
+			self.y = np.zeros(self.x_raw.shape)
+		elif isinstance(source, tuple):
+			self.x_raw = np.array(source[0])
+			self.y = np.array(source[1])
+		else:
+			df = pd.read_csv(source or self.data)
+			df.drop(['id','keyword','location'], axis=1, inplace=True)
+			
+			self.x_raw = df['text'].values
+			self.y = df['target'].values if 'target' in df else np.zeros(self.x_raw.shape)
 		
 	def clean_text(self):
 		# Removes special symbols and just keep
