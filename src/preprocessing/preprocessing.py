@@ -92,7 +92,7 @@ class Preprocessing:
 	   
 	   self.x_padded = np.array(self.x_padded)
 	   
-	def split_data(self, dontsplit=True):
+	def split_data(self, dontsplit=False):
 		if dontsplit:
 			self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
 			return

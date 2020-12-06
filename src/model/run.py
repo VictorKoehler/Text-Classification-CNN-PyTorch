@@ -86,7 +86,7 @@ class Run:
 	@staticmethod
 	def execute(model, data):
 		test = DatasetMaper(data['x_test'], data['y_test'])
-		loader_test = DataLoader(test, batch_size=1, test_size=1)
+		loader_test = DataLoader(test, batch_size=1)
 		return Run.evaluation(model, loader_test)
 
 	@staticmethod

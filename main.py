@@ -27,7 +27,7 @@ class Controller(Parameters):
 		pr.build_vocabulary()
 		pr.word_to_idx()
 		pr.padding_sentences()
-		pr.split_data(0.25 if source is None else 1)
+		pr.split_data(dontsplit=False if source is None else True)
 
 		return {'x_train': pr.x_train, 'y_train': pr.y_train, 'x_test': pr.x_test, 'y_test': pr.y_test}
 	
