@@ -82,7 +82,13 @@ class Run:
 				y_pred = model(x_batch)
 				predictions += list(y_pred.detach().numpy())
 		return predictions
-		
+	
+	@staticmethod
+	def execute(model, data, params):
+		test = DatasetMaper(data['x_test'], data['y_test'])
+		loader_test = DataLoader(test, batch_size=params.batch_size)
+		return Run.evaluation(model, loader_test)
+
 	@staticmethod
 	def calculate_accuray(grand_truth, predictions):
 		# Metrics calculation

@@ -30,6 +30,12 @@ class Controller(Parameters):
 		pr.split_data()
 
 		return {'x_train': pr.x_train, 'y_train': pr.y_train, 'x_test': pr.x_test, 'y_test': pr.y_test}
+	
+	def execute(self, inputdata):
+		if not isinstance(inputdata, list):
+			inputdata = [inputdata]
+		pdata = self.prepare_data(Parameters.num_words, Parameters.seq_len, source=inputdata)
+		return Run().execute(self.model, pdata, Parameters)
 		
 if __name__ == '__main__':
 	controller = Controller()
