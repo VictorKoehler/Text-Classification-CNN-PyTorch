@@ -96,4 +96,4 @@ class Preprocessing:
 		if dontsplit:
 			self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
 			return
-		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=test_size, random_state=42)
+		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=42)
