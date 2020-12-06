@@ -35,7 +35,7 @@ class Controller(Parameters):
 		if not isinstance(inputdata, list):
 			inputdata = [inputdata]
 		pdata = self.prepare_data(Parameters.num_words, Parameters.seq_len, source=inputdata)
-		return Run().execute(self.model, pdata, Parameters)
+		return Run().execute(self.model, pdata)
 		
 if __name__ == '__main__':
 	controller = Controller()

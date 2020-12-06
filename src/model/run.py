@@ -84,9 +84,9 @@ class Run:
 		return predictions
 	
 	@staticmethod
-	def execute(model, data, params):
+	def execute(model, data):
 		test = DatasetMaper(data['x_test'], data['y_test'])
-		loader_test = DataLoader(test, batch_size=params.batch_size)
+		loader_test = DataLoader(test, batch_size=1, test_size=1)
 		return Run.evaluation(model, loader_test)
 
 	@staticmethod
