@@ -92,5 +92,5 @@ class Preprocessing:
 	   
 	   self.x_padded = np.array(self.x_padded)
 	   
-	def split_data(self):
-		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=42)
+	def split_data(self, test_size=0.25):
+		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=test_size, random_state=42)
