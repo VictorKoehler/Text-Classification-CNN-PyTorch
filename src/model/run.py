@@ -80,14 +80,13 @@ class Run:
 		with torch.no_grad():
 			for x_batch, y_batch in loader_test:
 				y_pred = model(x_batch)
-				print(y_pred, '\n', x_batch, '\n', y_batch, '\n')
 				predictions += list(y_pred.detach().numpy())
 		return predictions
 	
 	@staticmethod
 	def execute(model, data):
 		test = DatasetMaper(data['x_test'], data['y_test'])
-		loader_test = DataLoader(test, batch_size=1)
+		loader_test = DataLoader(test, batch_size=12)
 		return Run.evaluation(model, loader_test)
 
 	@staticmethod
