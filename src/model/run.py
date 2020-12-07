@@ -80,6 +80,7 @@ class Run:
 		with torch.no_grad():
 			for x_batch, y_batch in loader_test:
 				y_pred = model(x_batch)
+				print(y_pred, x_batch, y_batch)
 				predictions += list(y_pred.detach().numpy())
 		return predictions
 	
