@@ -57,9 +57,12 @@ class Preprocessing:
 	   self.vocabulary = dict()
 	   fdist = nltk.FreqDist()
 	   
+	   stopwords = nltk.corpus.stopwords.words('english')
+
 	   for sentence in self.x_raw:
 	      for word in sentence:
-	         fdist[word] += 1
+			 if word not in stopwords:
+	         	fdist[word] += 1
 	         
 	   common_words = fdist.most_common(self.num_words)
 	   
