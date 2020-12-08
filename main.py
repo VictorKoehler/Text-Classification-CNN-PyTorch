@@ -18,10 +18,10 @@ class Controller(Parameters):
 		
 		
 	@staticmethod
-	def prepare_data(num_words, seq_len):
+	def prepare_data(num_words, seq_len, source=None):
 		# Preprocessing pipeline
 		pr = Preprocessing(num_words, seq_len)
-		pr.load_data()
+		pr.load_data(source=source)
 		pr.clean_text()
 		pr.text_tokenization()
 		pr.build_vocabulary()
