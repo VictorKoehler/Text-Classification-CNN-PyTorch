@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from nltk.tokenize import word_tokenize
 nltk.download('punkt')
+nltk.download('stopwords')
 
 
 class Preprocessing:
