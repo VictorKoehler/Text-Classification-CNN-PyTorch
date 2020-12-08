@@ -8,7 +8,7 @@ from nltk.tokenize import word_tokenize
 class Preprocessing:
 	
 	def __init__(self, num_words, seq_len):
-		self.data = '/Users/Fer/Documents/OwnRepo/TextClassification-CNN-PyTorch/data/tweets.csv'
+		self.data = '../../data/tweets.csv'
 		self.num_words = num_words
 		self.seq_len = seq_len
 		self.vocabulary = None
