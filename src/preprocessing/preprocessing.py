@@ -60,9 +60,9 @@ class Preprocessing:
 	   stopwords = nltk.corpus.stopwords.words('english')
 
 	   for sentence in self.x_raw:
-	      for word in sentence:
-			 if word not in stopwords:
-	         	fdist[word] += 1
+		   for word in sentence:
+			   if word not in stopwords:
+				   fdist[word] += 1
 	         
 	   common_words = fdist.most_common(self.num_words)
 	   
