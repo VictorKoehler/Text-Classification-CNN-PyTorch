@@ -20,6 +20,7 @@ class Preprocessing:
 		self.x_raw = None
 		self.y = None
 		self.vocabulary = dict()
+		self.seed = 42
 		
 		self.x_train = None
 		self.x_test = None
@@ -100,4 +101,4 @@ class Preprocessing:
 		self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
 
 	def split_data(self):
-		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=42)
+		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=self.seed)
