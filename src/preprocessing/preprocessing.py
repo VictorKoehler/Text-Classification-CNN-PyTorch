@@ -17,21 +17,29 @@ class Preprocessing:
 		self.x_padded = None
 		self.x_raw = None
 		self.y = None
+		self.vocabulary = dict()
 		
 		self.x_train = None
 		self.x_test = None
 		self.y_train = None
 		self.y_test = None
 		
-	def load_data(self):
+	def load_data(self, source=None):
 		# Reads the raw csv file and split into
 		# sentences (x) and target (y)
 		
-		df = pd.read_csv(self.data)
-		df.drop(['id','keyword','location'], axis=1, inplace=True)
-		
-		self.x_raw = df['text'].values
-		self.y = df['target'].values
+		if isinstance(source, list):
+			self.x_raw = np.array(source)
+			self.y = np.zeros(self.x_raw.shape)
+		elif isinstance(source, tuple):
+			self.x_raw = np.array(source[0])
+			self.y = np.array(source[1])
+		else:
+			df = pd.read_csv(source or self.data)
+			df.drop(['id','keyword','location'], axis=1, inplace=True)
+			
+			self.x_raw = df['text'].values
+			self.y = df['target'].values if 'target' in df else np.zeros(self.x_raw.shape)
 		
 	def clean_text(self):
 		# Removes special symbols and just keep
@@ -46,7 +54,6 @@ class Preprocessing:
 	   
 	def build_vocabulary(self):
 		# Builds the vocabulary and keeps the "x" most frequent words
-	   self.vocabulary = dict()
 	   fdist = nltk.FreqDist()
 	   
 	   for sentence in self.x_raw:
@@ -63,7 +70,6 @@ class Preprocessing:
 		# each token into its index based representation
 		
 	   self.x_tokenized = list()
-	   
 	   for sentence in self.x_raw:
 	      temp_sentence = list()
 	      for word in sentence:
@@ -84,6 +90,9 @@ class Preprocessing:
 	      self.x_padded.append(sentence)
 	   
 	   self.x_padded = np.array(self.x_padded)
-	   
+	
+	def commit_data(self):
+		self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
+
 	def split_data(self):
 		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=42)
