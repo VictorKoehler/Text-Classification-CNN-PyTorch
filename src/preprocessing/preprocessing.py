@@ -19,6 +19,7 @@ class Preprocessing:
 		self.x_padded = None
 		self.x_raw = None
 		self.y = None
+		self.vocabulary = dict()
 		
 		self.x_train = None
 		self.x_test = None
@@ -55,7 +56,6 @@ class Preprocessing:
 	   
 	def build_vocabulary(self):
 		# Builds the vocabulary and keeps the "x" most frequent words
-	   self.vocabulary = dict()
 	   fdist = nltk.FreqDist()
 	   
 	   stopwords = nltk.corpus.stopwords.words('english')
@@ -75,7 +75,6 @@ class Preprocessing:
 		# each token into its index based representation
 		
 	   self.x_tokenized = list()
-	   
 	   for sentence in self.x_raw:
 	      temp_sentence = list()
 	      for word in sentence:
@@ -96,9 +95,9 @@ class Preprocessing:
 	      self.x_padded.append(sentence)
 	   
 	   self.x_padded = np.array(self.x_padded)
-	   
-	def split_data(self, dontsplit=False):
-		if dontsplit:
-			self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
-			return
+	
+	def commit_data(self):
+		self.x_train, self.x_test, self.y_train, self.y_test = self.x_padded, self.x_padded, self.y, self.y
+
+	def split_data(self):
 		self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(self.x_padded, self.y, test_size=0.25, random_state=42)
