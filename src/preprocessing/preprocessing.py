@@ -4,11 +4,12 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from nltk.tokenize import word_tokenize
+nltk.download('punkt')
 
 class Preprocessing:
 	
 	def __init__(self, num_words, seq_len):
-		self.data = '/Users/Fer/Documents/OwnRepo/TextClassification-CNN-PyTorch/data/tweets.csv'
+		self.data = 'data/tweets.csv'
 		self.num_words = num_words
 		self.seq_len = seq_len
 		self.vocabulary = None
