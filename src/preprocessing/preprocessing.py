@@ -20,7 +20,6 @@ class Preprocessing:
 		self.x_raw = None
 		self.y = None
 		self.vocabulary = dict()
-		self.x_tokenized = list()
 		
 		self.x_train = None
 		self.x_test = None
@@ -75,6 +74,7 @@ class Preprocessing:
 		# By using the dictionary (vocabulary), it is transformed
 		# each token into its index based representation
 		
+	   self.x_tokenized = list()
 	   for sentence in self.x_raw:
 	      temp_sentence = list()
 	      for word in sentence:
